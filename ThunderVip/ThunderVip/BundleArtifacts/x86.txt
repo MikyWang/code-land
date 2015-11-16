@@ -1,0 +1,1 @@
+MainPackage=d:\users\miky\documents\visual studio 2015\Projects\ThunderVip\ThunderVip\bin\x86\Debug\ThunderVip_1.0.0.0_x86_Debug.appx
