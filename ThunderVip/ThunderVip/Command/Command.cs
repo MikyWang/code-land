@@ -7,11 +7,11 @@ using System.Windows.Input;
 
 namespace ThunderVip.Command
 {
-    class CopyCommand : ICommand
+    class Command : ICommand
     {
         public event EventHandler CanExecuteChanged;
         public Action<object> Copy;
-        public CopyCommand(Action<object> copy)
+        public Command(Action<object> copy)
         {
             this.Copy = copy;
         }
