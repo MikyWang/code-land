@@ -10,10 +10,10 @@ namespace ThunderVip.Command
     class Command : ICommand
     {
         public event EventHandler CanExecuteChanged;
-        public Action<object> Copy;
+        public Action<object> execute;
         public Command(Action<object> copy)
         {
-            this.Copy = copy;
+            this.execute = copy;
         }
         public bool CanExecute(object parameter)
         {
@@ -22,7 +22,7 @@ namespace ThunderVip.Command
 
         public void Execute(object parameter)
         {
-            Copy(parameter);
+            execute(parameter);
         }
     }
 }
