@@ -48,12 +48,14 @@ namespace GTA5Net
                     if (data != "100%")
                     {
                         NetViewModel.Progress = data;
+                        NetViewModel.ProgressValue = data.Split('%')[0];
                         await Task.Delay(100);
                         await Gta5NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script3 });
                     }
                     if (data == "100%")
                     {
                         NetViewModel.Progress = data;
+                        NetViewModel.ProgressValue = data.Split('%')[0];
                         NetViewModel.IsPopUp = false;
                         await Gta5NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script2 });
 
@@ -67,7 +69,7 @@ namespace GTA5Net
                     {
                         if ((ipTTL[i].Length > 4 && ipTTL[i + 1].Length > 4) || (ipTTL[i].Length <= 4 && ipTTL[i + 1].Length <= 4))
                         {
-                            data += ipTTL[i] + "," + ipTTL[i + 1];
+                            data += ipTTL[i];
                             i += 2;
                         }
                         else
@@ -86,6 +88,20 @@ namespace GTA5Net
                         }
 
                     }
+                    var list = data.Split(':');
+                    int min = 1;
+                    for (int j = 1; j < list.Length; j = j + 2)
+                    {
+                        if (int.Parse(list[j]) < int.Parse(list[min]))
+                        {
+                            min = j;
+                        }
+                    }
+                    var ipMod = new IPMod
+                    {
+                        IP = list[min - 1],
+                        TTL = list[min]
+                    };
                     await new MessageDialog(data).ShowAsync();
                     break;
                 default:
@@ -100,7 +116,7 @@ namespace GTA5Net
             NetViewModel.IsPopUp = true;
             await sender.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script });
             Gta5NetWeb.DOMContentLoaded -= Gta5NetWeb_DOMContentLoaded;
-            await Task.Delay(100);
+            await Task.Delay(200);
             await Gta5NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script3 });
         }
     }

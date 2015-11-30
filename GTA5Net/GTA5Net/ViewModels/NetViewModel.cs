@@ -17,6 +17,7 @@ namespace GTA5Net.ViewModels
         public NetViewModel()
         {
             Progress = "0%";
+            ProgressValue = "0";
             IpMods = new ObservableCollection<IPMod>();
         }
         public bool IsPopUp
@@ -31,12 +32,8 @@ namespace GTA5Net.ViewModels
         }
         public string ProgressValue
         {
-            get
-            {
-                _progressValue = _progress.Split('%')[0];
-                return _progressValue;
-            }
-            set { SetProperty(ref _progressValue, value); }
+            get {  return _progressValue;  }
+            set {SetProperty(ref _progressValue, value); }
         }
         public ObservableCollection<IPMod> IpMods
         {

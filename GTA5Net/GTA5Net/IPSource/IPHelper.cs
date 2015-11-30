@@ -36,7 +36,7 @@ var host = document.getElementById('host');
                             break;
                                    }
                              }" +
-                "host.setAttribute('value', '" + IP[3] + "');" + @"
+                "host.setAttribute('value', '" + IP[0] + "');" + @"
                    subBtns[j].click();
                  
   
