@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using GTA5Net.Model;
+using GTA5Net.ViewModels;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -27,9 +28,11 @@ namespace GTA5Net
     public sealed partial class MainPage : Page
     {
         private NotifyType _notifyType;
-        public IPMod Data { get; set; }
+        public NetViewModel NetViewModel { get; set; }
         public MainPage()
         {
+            NetViewModel = new NetViewModel();
+            this.DataContext = NetViewModel;
             this.InitializeComponent();
         }
 
@@ -44,11 +47,14 @@ namespace GTA5Net
                 case NotifyType.Progress:
                     if (data != "100%")
                     {
+                        NetViewModel.Progress = data;
                         await Task.Delay(100);
                         await Gta5NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script3 });
                     }
                     if (data == "100%")
                     {
+                        NetViewModel.Progress = data;
+                        NetViewModel.IsPopUp = false;
                         await Gta5NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script2 });
 
                     }
@@ -91,9 +97,10 @@ namespace GTA5Net
         }
         private async void Gta5NetWeb_DOMContentLoaded(WebView sender, WebViewDOMContentLoadedEventArgs args)
         {
+            NetViewModel.IsPopUp = true;
             await sender.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script });
             Gta5NetWeb.DOMContentLoaded -= Gta5NetWeb_DOMContentLoaded;
-            await Task.Delay(3000);
+            await Task.Delay(100);
             await Gta5NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script3 });
         }
     }

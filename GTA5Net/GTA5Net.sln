@@ -7,14 +7,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTA5Net", "GTA5Net\GTA5Net.
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8053BECB-60D1-4BA6-A446-283550E5525D}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{8053BECB-60D1-4BA6-A446-283550E5525D}.Debug|ARM.ActiveCfg = Debug|ARM
 		{8053BECB-60D1-4BA6-A446-283550E5525D}.Debug|ARM.Build.0 = Debug|ARM
 		{8053BECB-60D1-4BA6-A446-283550E5525D}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -24,6 +27,7 @@ Global
 		{8053BECB-60D1-4BA6-A446-283550E5525D}.Debug|x86.ActiveCfg = Debug|x86
 		{8053BECB-60D1-4BA6-A446-283550E5525D}.Debug|x86.Build.0 = Debug|x86
 		{8053BECB-60D1-4BA6-A446-283550E5525D}.Debug|x86.Deploy.0 = Debug|x86
+		{8053BECB-60D1-4BA6-A446-283550E5525D}.Release|Any CPU.ActiveCfg = Release|x86
 		{8053BECB-60D1-4BA6-A446-283550E5525D}.Release|ARM.ActiveCfg = Release|ARM
 		{8053BECB-60D1-4BA6-A446-283550E5525D}.Release|ARM.Build.0 = Release|ARM
 		{8053BECB-60D1-4BA6-A446-283550E5525D}.Release|ARM.Deploy.0 = Release|ARM

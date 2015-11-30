@@ -7,7 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <WebView Name="Gta5NetWeb" Source="http://tool.chinaz.com/dns/" DOMContentLoaded="Gta5NetWeb_DOMContentLoaded" ScriptNotify="Gta5NetWeb_ScriptNotify"/>
+    <Grid Name="myGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Popup IsOpen="{Binding IsPopUp}" >
+            <RelativePanel>
+                <StackPanel   RelativePanel.AlignHorizontalCenterWith="backGroundRect" RelativePanel.AlignVerticalCenterWith="backGroundRect">
+                    <ProgressBar Name="progressValue" Width="300" Height="20" IsIndeterminate="False" Maximum="100" Value="{Binding ProgressValue}"/>
+                    <TextBlock Name="progress" Text="{Binding Progress}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <Rectangle Name="backGroundRect" Fill="Black" Opacity="0.5" Width="{Binding ElementName=myGrid, Path=ActualWidth}" Height="{Binding ElementName=myGrid,  Path=ActualHeight}"/>
+            </RelativePanel>
+        </Popup>
+        <WebView Name="Gta5NetWeb" Source="http://tool.chinaz.com/dns/" DOMContentLoaded="Gta5NetWeb_DOMContentLoaded" ScriptNotify="Gta5NetWeb_ScriptNotify" />
     </Grid>
 </Page>
