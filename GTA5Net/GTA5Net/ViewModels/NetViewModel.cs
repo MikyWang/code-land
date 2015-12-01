@@ -16,15 +16,7 @@ namespace GTA5Net.ViewModels
         {
             IpMods = new ObservableCollection<IPMod>()
             {
-                new IPMod
-                {
-                    IsPopUp=true,
-                    Domain="conductor-prod.ros.rockstargames.com",
-                    IP=string.Empty,
-                    TTL=string.Empty,
-                    Progress="0%",
-                    ProgressValue="0"
-                },
+                new IPMod{Domain="conductor-prod.ros.rockstargames.com"},
                 new IPMod{Domain="patches.rockstargames.com"},
                 new IPMod {Domain= "prod.cloud.rockstargames.com"},
                 new IPMod  {Domain="prod.cs.ros.rockstargames.com"},
