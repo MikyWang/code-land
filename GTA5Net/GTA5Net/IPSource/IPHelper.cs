@@ -17,7 +17,6 @@ namespace GTA5Net.IPSource
         public static string[] IP =
         {
            "conductor-prod.ros.rockstargames.com",
-           "conductor-prod.ros.rockstargames.com",
            "patches.rockstargames.com",
            "prod.cloud.rockstargames.com",
            "prod.cs.ros.rockstargames.com",

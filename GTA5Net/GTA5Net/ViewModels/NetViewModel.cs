@@ -10,31 +10,39 @@ namespace GTA5Net.ViewModels
 {
     public class NetViewModel : EntityBase
     {
-        private string _progress;
-        private string _progressValue;
-        private bool _isPopUp;
+
         private ObservableCollection<IPMod> _ipMods;
         public NetViewModel()
         {
-            Progress = "0%";
-            ProgressValue = "0";
-            IpMods = new ObservableCollection<IPMod>();
+            IpMods = new ObservableCollection<IPMod>()
+            {
+                new IPMod
+                {
+                    IsPopUp=true,
+                    Domain="conductor-prod.ros.rockstargames.com",
+                    IP=string.Empty,
+                    TTL=string.Empty,
+                    Progress="0%",
+                    ProgressValue="0"
+                },
+                new IPMod{Domain="patches.rockstargames.com"},
+                new IPMod {Domain= "prod.cloud.rockstargames.com"},
+                new IPMod  {Domain="prod.cs.ros.rockstargames.com"},
+                new IPMod{Domain="prod.p01sjc.pod.rockstargames.com"},
+                new IPMod {Domain="prod.p02sjc.pod.rockstargames.com"},
+                new IPMod{Domain="prod.ros.rockstargames.com"},
+                new IPMod{Domain="prod.telemetry.ros.rockstargames.com"},
+            };
+            foreach (var ipMod in IpMods)
+            {
+                ipMod.IsPopUp = true;
+                ipMod.IP = "            loading......";
+                ipMod.TTL = string.Empty;
+                ipMod.Progress = "0%";
+                ipMod.ProgressValue = "0";
+            }
         }
-        public bool IsPopUp
-        {
-            get { return _isPopUp; }
-            set { SetProperty(ref _isPopUp, value); }
-        }
-        public string Progress
-        {
-            get { return _progress; }
-            set { SetProperty(ref _progress, value); }
-        }
-        public string ProgressValue
-        {
-            get {  return _progressValue;  }
-            set {SetProperty(ref _progressValue, value); }
-        }
+
         public ObservableCollection<IPMod> IpMods
         {
             get { return _ipMods; }

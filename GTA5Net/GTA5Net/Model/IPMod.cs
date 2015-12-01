@@ -10,6 +10,10 @@ namespace GTA5Net.Model
     {
         private string _ttl;
         private string _ip;
+        private string _domain;
+        private string _progress;
+        private string _progressValue;
+        private bool _isPopUp;
         public string TTL
         {
             get { return _ttl; }
@@ -19,6 +23,26 @@ namespace GTA5Net.Model
         {
             get { return _ip; }
             set { SetProperty(ref _ip, value); }
+        }
+        public string Domain
+        {
+            get { return _domain; }
+            set { SetProperty(ref _domain, value); }
+        }
+        public bool IsPopUp
+        {
+            get { return _isPopUp; }
+            set { SetProperty(ref _isPopUp, value); }
+        }
+        public string Progress
+        {
+            get { return _progress; }
+            set { SetProperty(ref _progress, value); }
+        }
+        public string ProgressValue
+        {
+            get { return _progressValue; }
+            set { SetProperty(ref _progressValue, value); }
         }
     }
 }
