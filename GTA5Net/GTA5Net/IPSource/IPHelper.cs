@@ -11,6 +11,17 @@ public enum NotifyType
     Progress,
     Data
 }
+public enum WebViewType
+{
+    NetWeb0,
+    NetWeb1,
+    NetWeb2,
+    NetWeb3,
+    NetWeb4,
+    NetWeb5,
+    NetWeb6,
+    NetWeb7,
+}
 namespace GTA5Net.IPSource
 {
 
@@ -30,7 +41,7 @@ namespace GTA5Net.IPSource
         };
         public static string GetDomain()
         {
-            var script= @"
+            var script = @"
  
 var host = document.getElementById('host');
  var subBtns = document.getElementsByTagName('input');
@@ -49,8 +60,10 @@ var host = document.getElementById('host');
 ";
             return script;
         }
-        public static string Script2 = @"
-             var table = document.getElementById('tablesumary');
+        public static string GetData()
+        {
+            var script = @"
+var table = document.getElementById('tablesumary');
             if (table == null) {
 table.onclick=window.external.notify('Data,table');
 }
@@ -65,10 +78,16 @@ else {
     table.onclick = window.external.notify('Data,'+data.toString());
 }
 ";
-        public static string Script3 = @"
+            return script;
+        }
+        public static string GetProgress()
+        {
+            var script = @"
 var progress = document.getElementsByTagName('em')[0].innerText;
 progress.onclick = window.external.notify('Progress,'+progress.toString());
 ";
+            return script;
+        }
         public static string GetMatch(string rule, string source, Func<string, string> replace = null)
         {
             var reg = new Regex(rule);
