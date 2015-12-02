@@ -8,22 +8,15 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Width="700" HorizontalAlignment="Left" >
+        <WebView Name="NetWeb" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Visible"/>
+        <Grid Width="760" HorizontalAlignment="Left" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
-            <WebView Name="NetWeb0" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb1" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb2" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb3" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb4" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb5" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb6" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb7" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <TextBlock Text="域名" FontSize="28"  Width="220" Margin="125,0,-125,0" VerticalAlignment="Center" />
-                <TextBlock Text="IP" FontSize="28"  Width="200" Margin="125,0,-125,0" VerticalAlignment="Center"/>
+                <TextBlock Text="域名" FontSize="28"  Width="250" Margin="125,0,-125,0" VerticalAlignment="Center" />
+                <TextBlock Text="IP" FontSize="28"  Width="250" Margin="125,0,-125,0" VerticalAlignment="Center"/>
                 <TextBlock Text="TTL" FontSize="28"  Width="120" Margin="60,0,0,0" VerticalAlignment="Center"/>
                 <Button Content="帮助" FontSize="24"/>
             </StackPanel>
@@ -31,9 +24,9 @@
                 <ListView.ItemTemplate >
                     <DataTemplate >
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Domain}" TextWrapping="Wrap"   FontSize="20" Margin="60,0,0,0"  Width="200" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding IP}" FontSize="18" TextWrapping="Wrap" Margin="60,0,-60,0"  Width="150" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding TTL}" FontSize="18" TextWrapping="Wrap" Margin="100,0,0,0"  Width="120" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Domain}" TextWrapping="Wrap"   FontSize="20" Margin="60,0,0,0"  Width="250" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding IP}" FontSize="18" TextWrapping="Wrap" Margin="60,0,-60,0"  Width="250" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding TTL}" FontSize="18" TextWrapping="Wrap" Margin="0,0,0,0"  Width="120" VerticalAlignment="Center"/>
                             <Popup IsOpen="{Binding IsPopUp}" VerticalAlignment="Center">
                                 <StackPanel VerticalAlignment="Center">
                                     <ProgressBar IsIndeterminate="False" Maximum="100" Value="{Binding ProgressValue}"/>
