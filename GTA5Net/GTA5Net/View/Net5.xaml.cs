@@ -119,11 +119,5 @@ namespace GTA5Net.View
                     break;
             }
         }
-
-        private void NetWeb_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
-        {
-            NetWeb.Refresh();
-            
-        }
     }
 }
