@@ -8,12 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Width="760" HorizontalAlignment="Left" Margin="20,0,0,0">
+        <Grid Width="760" HorizontalAlignment="Left" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
-            <WebView Name="NetWeb" Grid.Row="0" Source="http://tool.chinaz.com/dns/" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
+            <WebView Name="NetWeb" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="域名" FontSize="28"  Width="250" Margin="125,0,-125,0" VerticalAlignment="Center" />
                 <TextBlock Text="IP" FontSize="28"  Width="250" Margin="125,0,-125,0" VerticalAlignment="Center"/>

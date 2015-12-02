@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
 namespace GTA5Net.View
@@ -28,19 +27,18 @@ namespace GTA5Net.View
     {
         private NotifyType _notifyType;
         public NetViewModel NetViewModel { get; set; }
+        public static int Count =0;
         public Net5()
         {
             NetViewModel = new NetViewModel();
             this.DataContext = NetViewModel;
             this.InitializeComponent();
-            
-
         }
         private async void NetWeb_DOMContentLoaded(WebView sender, WebViewDOMContentLoadedEventArgs args)
         {
-            await sender.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script });
+            await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script });
             NetWeb.DOMContentLoaded -= NetWeb_DOMContentLoaded;
-            await Task.Delay(200);
+            await Task.Delay(2000);
             await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script3 });
         }
         private async void NetWeb_ScriptNotify(object sender, NotifyEventArgs e)
@@ -53,16 +51,16 @@ namespace GTA5Net.View
                 case NotifyType.Progress:
                     if (data != "100%")
                     {
-                        NetViewModel.IpMods[0].Progress = data;
-                        NetViewModel.IpMods[0].ProgressValue = data.Split('%')[0];
+                        NetViewModel.IpMods[Count].Progress = data;
+                        NetViewModel.IpMods[Count].ProgressValue = data.Split('%')[0];
                         await Task.Delay(100);
                         await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script3 });
                     }
                     if (data == "100%")
                     {
-                        NetViewModel.IpMods[0].Progress = data;
-                        NetViewModel.IpMods[0].ProgressValue = data.Split('%')[0];
-                        NetViewModel.IpMods[0].IsPopUp = false;
+                        NetViewModel.IpMods[Count].Progress = data;
+                        NetViewModel.IpMods[Count].ProgressValue = data.Split('%')[0];
+                        NetViewModel.IpMods[Count].IsPopUp = false;
                         await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script2 });
 
                     }
@@ -108,12 +106,25 @@ namespace GTA5Net.View
                         IP = list[min - 1],
                         TTL = list[min]
                     };
-                    NetViewModel.IpMods[0].IP = list[min - 1];
-                    NetViewModel.IpMods[0].TTL = list[min];
+                    NetViewModel.IpMods[Count].IP = IPSource.IPHelper.GetMatch(IPSource.IPHelper.Filter, list[min - 1], value => { return list[min - 1].Replace(value, ""); });
+                    NetViewModel.IpMods[Count].TTL = list[min];
+                    Count++;
+                    if (Count<8)
+                    {
+                        await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script });
+                        await Task.Delay(2000);
+                        await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script3 });
+                    }
                     break;
                 default:
                     break;
             }
+        }
+
+        private void NetWeb_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
+        {
+            NetWeb.Refresh();
+            NetWeb.DOMContentLoaded += NetWeb_DOMContentLoaded;
         }
     }
 }

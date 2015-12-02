@@ -1,7 +1,9 @@
-﻿using System;
+﻿using GTA5Net.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 public enum NotifyType
@@ -14,6 +16,7 @@ namespace GTA5Net.IPSource
 
     public static class IPHelper
     {
+        public const string Filter = @"\[[\u4E00-\u9FA5]*\s\]";
         public static string[] IP =
         {
            "conductor-prod.ros.rockstargames.com",
@@ -26,6 +29,7 @@ namespace GTA5Net.IPSource
            "prod.telemetry.ros.rockstargames.com",
         };
         public static string Script = @"
+ 
 var host = document.getElementById('host');
  var subBtns = document.getElementsByTagName('input');
    var j = 0;
@@ -34,8 +38,9 @@ var host = document.getElementById('host');
                           j = i;
                             break;
                                    }
-                             }" +
-                "host.setAttribute('value', '" + IP[0] + "');" + @"
+                             }
+" +
+                "host.setAttribute('value', '" + IP[Net5.Count] + "');" + @"
                    subBtns[j].click();
                  
   
@@ -60,5 +65,20 @@ else {
 var progress = document.getElementsByTagName('em')[0].innerText;
 progress.onclick = window.external.notify('Progress,'+progress.toString());
 ";
+        public static string GetMatch(string rule, string source, Func<string, string> replace = null)
+        {
+            var reg = new Regex(rule);
+            var match = reg.Match(source);
+            if (match.Groups.Count == 0)
+            {
+                return "";
+            }
+            var value = match.Value;
+            if (replace != null)
+            {
+                source = replace(value);
+            }
+            return source;
+        }
     }
 }

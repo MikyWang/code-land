@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{8053BECB-60D1-4BA6-A446-283550E5525D}</ProjectGuid>
+    <ProjectGuid>{519AB778-479E-4176-B5FB-9AC8B51F6FDA}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GTA5Net</RootNamespace>
