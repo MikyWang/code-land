@@ -28,7 +28,9 @@ namespace GTA5Net.IPSource
            "prod.ros.rockstargames.com",
            "prod.telemetry.ros.rockstargames.com",
         };
-        public static string Script = @"
+        public static string GetDomain()
+        {
+            var script= @"
  
 var host = document.getElementById('host');
  var subBtns = document.getElementsByTagName('input');
@@ -45,6 +47,8 @@ var host = document.getElementById('host');
                  
   
 ";
+            return script;
+        }
         public static string Script2 = @"
              var table = document.getElementById('tablesumary');
             if (table == null) {

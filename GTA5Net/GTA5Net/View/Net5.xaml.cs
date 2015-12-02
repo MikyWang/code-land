@@ -36,7 +36,7 @@ namespace GTA5Net.View
         }
         private async void NetWeb_DOMContentLoaded(WebView sender, WebViewDOMContentLoadedEventArgs args)
         {
-            await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script });
+            await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.GetDomain() });
             NetWeb.DOMContentLoaded -= NetWeb_DOMContentLoaded;
             await Task.Delay(2000);
             await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script3 });
@@ -106,14 +106,13 @@ namespace GTA5Net.View
                         IP = list[min - 1],
                         TTL = list[min]
                     };
-                    NetViewModel.IpMods[Count].IP = IPSource.IPHelper.GetMatch(IPSource.IPHelper.Filter, list[min - 1], value => { return list[min - 1].Replace(value, ""); });
+                    NetViewModel.IpMods[Count].IP = list[min-1];
                     NetViewModel.IpMods[Count].TTL = list[min];
                     Count++;
                     if (Count<8)
                     {
-                        await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script });
-                        await Task.Delay(2000);
-                        await NetWeb.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.Script3 });
+                        NetWeb.Navigate(new Uri("http://tool.chinaz.com/dns/"));
+                        NetWeb.DOMContentLoaded += NetWeb_DOMContentLoaded;
                     }
                     break;
                 default:
@@ -124,7 +123,7 @@ namespace GTA5Net.View
         private void NetWeb_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
         {
             NetWeb.Refresh();
-            NetWeb.DOMContentLoaded += NetWeb_DOMContentLoaded;
+            
         }
     }
 }
