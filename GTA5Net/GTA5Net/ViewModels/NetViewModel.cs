@@ -1,4 +1,5 @@
-﻿using GTA5Net.Model;
+﻿using Commands.Command;
+using GTA5Net.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,8 +12,27 @@ namespace GTA5Net.ViewModels
 {
     public class NetViewModel : EntityBase
     {
-
+        public Command Convert { get; private set; }
         private ObservableCollection<IPMod> _ipMods;
+        private const string _hostsHeader = "# RockStar Start\n";
+        private const string _hostsFooter = "# RockStar End";
+        private string _hostsBody = string.Empty;
+        private Visibility _hostsEnable;
+        public Visibility HostsEnable
+        {
+            get { return _hostsEnable; }
+            set { SetProperty(ref _hostsEnable, value); }
+        }
+        public string Hosts
+        {
+            get { return _hostsHeader + _hostsBody + _hostsFooter; }
+            set { SetProperty(ref _hostsBody, value); }
+        }
+        public ObservableCollection<IPMod> IpMods
+        {
+            get { return _ipMods; }
+            set { SetProperty(ref _ipMods, value); }
+        }
         public NetViewModel()
         {
             IpMods = new ObservableCollection<IPMod>()
@@ -34,12 +54,27 @@ namespace GTA5Net.ViewModels
                 ipMod.Progress = "0%";
                 ipMod.ProgressValue = "0";
             }
+            Convert = new Command(convert, () =>
+              {
+                  return IpMods.All(ipMod =>
+                  {
+                      return ipMod.IsPopUp == Visibility.Collapsed;
+                  });
+              });
+            HostsEnable = Visibility.Collapsed;
         }
-
-        public ObservableCollection<IPMod> IpMods
+        private void convert()
         {
-            get { return _ipMods; }
-            set { SetProperty(ref _ipMods, value); }
+            var body = string.Empty;
+            foreach (var ipMod in IpMods)
+            {
+                body += IPSource.IPHelper.GetMatch(IPSource.IPHelper.Filter, ipMod.IP, value =>
+                {
+                    return ipMod.IP.Replace(value, "");
+                }) + "    " + ipMod.Domain + "\n";
+            }
+            Hosts = body;
+            HostsEnable = Visibility.Visible;
         }
     }
 }

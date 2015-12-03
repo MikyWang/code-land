@@ -96,6 +96,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="IPSource\IPHelper.cs" />
     <Compile Include="Model\EntityBase.cs" />
     <Compile Include="Model\IPMod.cs" />

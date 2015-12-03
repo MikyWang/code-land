@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+    <ScrollViewer  ScrollViewer.VerticalScrollBarVisibility="Auto">
         <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
             <WebView Name="NetWeb0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
             <WebView Name="NetWeb1" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
@@ -29,7 +30,7 @@
                             <TextBlock Text="{Binding Domain}" TextWrapping="Wrap" Width="150" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="{Binding IP}" TextWrapping="Wrap"  Width="100" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="{Binding TTL}" TextWrapping="Wrap"   Width="50" Margin="10" VerticalAlignment="Center"/>
-                                <StackPanel VerticalAlignment="Center" Visibility="{Binding IsPopUp}">
+                            <StackPanel VerticalAlignment="Center" Visibility="{Binding IsPopUp}">
                                 <ProgressBar IsIndeterminate="False" Maximum="100" Value="{Binding ProgressValue}"/>
                                 <TextBlock  Text="{Binding Progress}" HorizontalAlignment="Center" />
                             </StackPanel>
@@ -37,9 +38,12 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Content="一键转换" x:Name="convert"  RelativePanel.Below="Data" Margin="160,50,0,0"/>
-            <TextBlock x:Name="HelperTitle" Margin="150,0,0,0" Text="使用帮助" FontSize="28" RelativePanel.RightOf="Title" RelativePanel.AlignVerticalCenterWith="Title"  />
-            <TextBlock x:Name="HelperContent" RelativePanel.Below="HelperTitle" RelativePanel.RightOf="Data" Margin="100,50,0,0" Text="1.	等待所有进度加载完成。&#13;2. 单击一键转换。&#13;3.	将生成的hosts模板全选复制到C:\windows\system32\driver\etc\hosts文件里。" TextWrapping="WrapWholeWords"/>
+            <Button Content="一键转换" x:Name="convert"  RelativePanel.Below="Data" Margin="160,50,0,0" Command="{Binding Convert}"/>
+            <TextBlock x:Name="Hosts" Text="{Binding Hosts, Mode=TwoWay}" Visibility="{Binding HostsEnable, Mode=TwoWay}" RelativePanel.RightOf="Data" Margin="100,50,0,80" TextWrapping="WrapWholeWords" />
+            <StackPanel x:Name="Helper" RelativePanel.RightOf="Data" RelativePanel.Below="Hosts">
+                <TextBlock x:Name="HelperTitle" Margin="100,15,0,0" Text="使用帮助" FontSize="28"/>
+                <TextBlock x:Name="HelperContent" Margin="100,30,0,0" Text="1.	等待所有进度加载完成。&#13;2. 单击一键转换。&#13;3.	将生成的hosts模板全选复制到C:\windows\system32\driver\etc\hosts文件里。" TextWrapping="WrapWholeWords"/>
+            </StackPanel>
         </RelativePanel>
     </ScrollViewer>
 </Page>

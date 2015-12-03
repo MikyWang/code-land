@@ -27,7 +27,7 @@ namespace GTA5Net.IPSource
 
     public static class IPHelper
     {
-        public const string Filter = @"\[[\u4E00-\u9FA5]*\s\]";
+        public const string Filter = @"\[[\u4E00-\u9FA5]*\s(\]|[\u4E00-\u9FA5]*\w*(\]|[\u4E00-\u9FA5]*\])|(\w*(\]|[\u4E00-\u9FA5]*)(\]|\w*(\]|[\u4E00-\u9FA5]*\]))))";
         public static string[] IP =
         {
            "conductor-prod.ros.rockstargames.com",
