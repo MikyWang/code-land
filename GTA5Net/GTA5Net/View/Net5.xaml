@@ -7,43 +7,39 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Width="700" HorizontalAlignment="Left" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="9*"/>
-            </Grid.RowDefinitions>
-            <WebView Name="NetWeb0" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb1" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb2" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb3" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb4" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb5" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb6" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <WebView Name="NetWeb7" Grid.Row="0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <TextBlock Text="域名" FontSize="28"  Width="220" Margin="125,0,-125,0" VerticalAlignment="Center" />
-                <TextBlock Text="IP" FontSize="28"  Width="200" Margin="125,0,-125,0" VerticalAlignment="Center"/>
-                <TextBlock Text="TTL" FontSize="28"  Width="120" Margin="60,0,0,0" VerticalAlignment="Center"/>
-                <Button Content="帮助" FontSize="24"/>
-            </StackPanel>
-            <ListView  ItemsSource="{Binding IpMods, Mode=TwoWay}" Grid.Row="1" Margin="-10,0,0,0">
-                <ListView.ItemTemplate >
-                    <DataTemplate >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Domain}" TextWrapping="Wrap"   FontSize="20" Margin="60,0,0,0"  Width="200" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding IP}" FontSize="18" TextWrapping="Wrap" Margin="60,0,-60,0"  Width="150" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding TTL}" FontSize="18" TextWrapping="Wrap" Margin="100,0,0,0"  Width="120" VerticalAlignment="Center"/>
-                            <Popup IsOpen="{Binding IsPopUp}" VerticalAlignment="Center">
-                                <StackPanel VerticalAlignment="Center">
-                                    <ProgressBar IsIndeterminate="False" Maximum="100" Value="{Binding ProgressValue}"/>
-                                    <TextBlock  Text="{Binding Progress}" HorizontalAlignment="Center"></TextBlock>
-                                </StackPanel>
-                            </Popup>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-    </Grid>
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <WebView Name="NetWeb0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
+        <WebView Name="NetWeb1" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
+        <WebView Name="NetWeb2" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
+        <WebView Name="NetWeb3" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
+        <WebView Name="NetWeb4" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
+        <WebView Name="NetWeb5" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
+        <WebView Name="NetWeb6" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
+        <WebView Name="NetWeb7" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
+        <StackPanel x:Name="Title"  Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True" Margin="15" >
+            <TextBlock Text="域名" Width="150" Margin="10"  VerticalAlignment="Center" />
+            <TextBlock Text="IP"  Width="100" Margin="10"  VerticalAlignment="Center"/>
+            <TextBlock Text="TTL" Width="50" Margin="10"   VerticalAlignment="Center"/>
+        </StackPanel>
+        <ListView  ItemsSource="{Binding IpMods, Mode=TwoWay}" x:Name="Data" RelativePanel.Below="Title">
+            <ListView.ItemTemplate >
+                <DataTemplate >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Domain}" TextWrapping="Wrap" Width="150" Margin="10" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding IP}" TextWrapping="Wrap"  Width="100" Margin="10" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding TTL}" TextWrapping="Wrap"   Width="50" Margin="10" VerticalAlignment="Center"/>
+                        <Popup IsOpen="{Binding IsPopUp}" VerticalAlignment="Center">
+                            <StackPanel VerticalAlignment="Center">
+                                <ProgressBar IsIndeterminate="False" Maximum="100" Value="{Binding ProgressValue}"/>
+                                <TextBlock  Text="{Binding Progress}" HorizontalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </Popup>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="一键转换" x:Name="convert" RelativePanel.Below="Data" Margin="170,50"/>
+        <TextBlock x:Name="HelperTitle" Margin="150,0,0,0" Text="使用帮助" FontSize="28" RelativePanel.RightOf="Title" RelativePanel.AlignVerticalCenterWith="Title"  />
+        <TextBlock x:Name="HelperContent" RelativePanel.Below="HelperTitle" RelativePanel.RightOf="Data" Margin="100,50" Text="1.	等待所有进度加载完成。&#13;2. 单击一键转换。&#13;3.	将生成的hosts模板全选复制到C:\windows\system32\driver\etc\hosts文件里。" TextWrapping="WrapWholeWords"/>
+    </RelativePanel>
 </Page>

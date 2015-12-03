@@ -41,12 +41,12 @@ namespace GTA5Net
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
-#if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = true;
-            }
-#endif
+//#if DEBUG
+//            if (System.Diagnostics.Debugger.IsAttached)
+//            {
+//                this.DebugSettings.EnableFrameRateCounter = true;
+//            }
+//#endif
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -56,7 +56,6 @@ namespace GTA5Net
             {
                 // 创建要充当导航上下文的框架，并导航到第一页
                 rootFrame = new Frame();
-
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

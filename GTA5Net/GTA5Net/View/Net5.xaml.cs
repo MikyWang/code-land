@@ -69,7 +69,7 @@ namespace GTA5Net.View
                     break;
             }
             await sender.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.GetDomain() });
-            await Task.Delay(5000);
+            await Task.Delay(6000);
             await sender.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.GetProgress() });
         }
         private async void NetWeb_ScriptNotify(object sender, NotifyEventArgs e)
