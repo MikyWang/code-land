@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -69,7 +70,7 @@ namespace GTA5Net.View
                     break;
             }
             await sender.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.GetDomain() });
-            await Task.Delay(4000);
+            await Task.Delay(2500);
             await sender.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.GetProgress() });
         }
         private async void NetWeb_ScriptNotify(object sender, NotifyEventArgs e)
@@ -140,7 +141,7 @@ namespace GTA5Net.View
             var ipTTL = data.Split('&');
             data = string.Empty;
             var i = 0;
-            while (i < ipTTL.Length-1)
+            while (i < ipTTL.Length - 1)
             {
                 data += ipTTL[i];
                 if (i < ipTTL.Length)
@@ -182,11 +183,29 @@ namespace GTA5Net.View
                     min = j;
                 }
             }
-            return new string[] { list[min-1], list[min] };
+            return new string[] { list[min - 1], list[min] };
         }
         private void NetWeb_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
         {
             (sender as WebView).Refresh();
+        }
+
+        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            var item = sender as MenuFlyoutItem;
+            var hosts = (item.DataContext as NetViewModel).Hosts;
+            var dp = new DataPackage();
+            dp.SetText(hosts);
+            Clipboard.SetContent(dp);
+        }
+
+        private void Hosts_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var elem = sender as FrameworkElement;
+            if (elem != null)
+            {
+                FlyoutBase.ShowAttachedFlyout(elem);
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace GTA5Net.ViewModels
     {
         public Command Convert { get; private set; }
         private ObservableCollection<IPMod> _ipMods;
-        private const string _hostsHeader = "# RockStar Start\n";
+        private const string _hostsHeader = "# RockStar Start\r\n";
         private const string _hostsFooter = "# RockStar End";
         private string _hostsBody = string.Empty;
         private Visibility _hostsEnable;
@@ -71,7 +71,7 @@ namespace GTA5Net.ViewModels
                 body += IPSource.IPHelper.GetMatch(IPSource.IPHelper.Filter, ipMod.IP, value =>
                 {
                     return ipMod.IP.Replace(value, "");
-                }) + "    " + ipMod.Domain + "\n";
+                }) + "    " + ipMod.Domain + "\r\n";
             }
             Hosts = body;
             HostsEnable = Visibility.Visible;

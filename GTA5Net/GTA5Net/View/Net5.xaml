@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
 
-    <ScrollViewer  ScrollViewer.VerticalScrollBarVisibility="Auto">
+    <ScrollViewer  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
         <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
             <WebView Name="NetWeb0" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
             <WebView Name="NetWeb1" Source="http://tool.chinaz.com/dns/" NavigationFailed="NetWeb_NavigationFailed" ScriptNotify="NetWeb_ScriptNotify" DOMContentLoaded="NetWeb_DOMContentLoaded" Visibility="Collapsed"/>
@@ -39,10 +39,21 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Button Content="一键转换" x:Name="convert"  RelativePanel.Below="Data" Margin="160,50,0,0" Command="{Binding Convert}"/>
-            <TextBlock x:Name="Hosts" Text="{Binding Hosts, Mode=TwoWay}" Visibility="{Binding HostsEnable, Mode=TwoWay}" RelativePanel.RightOf="Data" Margin="100,50,0,80" TextWrapping="WrapWholeWords" />
+            <TextBlock  x:Name="Hosts"  Text="{Binding Hosts, Mode=TwoWay}" Visibility="{Binding HostsEnable, Mode=TwoWay}" Tapped="Hosts_Tapped" RelativePanel.RightOf="Data" Margin="100,50,0,80" TextWrapping="WrapWholeWords" >
+                <FlyoutBase.AttachedFlyout >
+                            <MenuFlyout  >
+                                      <MenuFlyoutItem  Name="Account" Text="复制hosts"  Click="MenuFlyoutItem_Click"/>
+                            </MenuFlyout>
+            </FlyoutBase.AttachedFlyout>
+            </TextBlock>
             <StackPanel x:Name="Helper" RelativePanel.RightOf="Data" RelativePanel.Below="Hosts">
-                <TextBlock x:Name="HelperTitle" Margin="100,15,0,0" Text="使用帮助" FontSize="28"/>
-                <TextBlock x:Name="HelperContent" Margin="100,30,0,0" Text="1.	等待所有进度加载完成。&#13;2. 单击一键转换。&#13;3.	将生成的hosts模板全选复制到C:\windows\system32\driver\etc\hosts文件里。" TextWrapping="WrapWholeWords"/>
+                <TextBlock x:Name="HelperTitle" Margin="100,15,0,0" Text="gta5onlineIP优选器UWP版使用帮助" FontSize="24"/>
+                <TextBlock x:Name="HelperContent" Margin="100,30,0,0" Text="1.	等待所有进度加载完成。&#13;2. 单击一键转换。&#13;3.	单击生成的hosts模板复制到C:\Windows\System32\drivers\etc\目录下的hosts文件里。" TextWrapping="WrapWholeWords"/>
+            </StackPanel>
+            <StackPanel RelativePanel.AlignRightWithPanel="True" Margin="0,0,10,0">
+                <TextBlock FontSize="24" FontStyle="Oblique" HorizontalAlignment="Right"  Text="版权所有"/>
+                <TextBlock FontSize="24" FontStyle="Oblique" HorizontalAlignment="Right"  Text="By Miky Wang"/>
+                <TextBlock FontSize="24" FontStyle="Oblique" HorizontalAlignment="Right"  Text="贴吧ID:牛奶丿糖丶"/>
             </StackPanel>
         </RelativePanel>
     </ScrollViewer>
