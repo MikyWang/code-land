@@ -69,7 +69,7 @@ namespace GTA5Net.View
                     break;
             }
             await sender.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.GetDomain() });
-            await Task.Delay(6000);
+            await Task.Delay(4000);
             await sender.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.GetProgress() });
         }
         private async void NetWeb_ScriptNotify(object sender, NotifyEventArgs e)
@@ -122,7 +122,7 @@ namespace GTA5Net.View
                     {
                         NetViewModel.IpMods[Count].Progress = data;
                         NetViewModel.IpMods[Count].ProgressValue = data.Split('%')[0];
-                        NetViewModel.IpMods[Count].IsPopUp = false;
+                        NetViewModel.IpMods[Count].IsPopUp = Visibility.Collapsed;
                         await webview.InvokeScriptAsync("eval", new string[] { IPSource.IPHelper.GetData() });
 
                     }

@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace GTA5Net.ViewModels
 {
@@ -27,7 +28,7 @@ namespace GTA5Net.ViewModels
             };
             foreach (var ipMod in IpMods)
             {
-                ipMod.IsPopUp = true;
+                ipMod.IsPopUp = Visibility.Visible;
                 ipMod.IP = "            loading......";
                 ipMod.TTL = string.Empty;
                 ipMod.Progress = "0%";

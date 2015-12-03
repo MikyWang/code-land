@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace GTA5Net.Model
 {
@@ -13,7 +14,7 @@ namespace GTA5Net.Model
         private string _domain;
         private string _progress;
         private string _progressValue;
-        private bool _isPopUp;
+        private Visibility  _isPopUp;
         public string TTL
         {
             get { return _ttl; }
@@ -29,7 +30,7 @@ namespace GTA5Net.Model
             get { return _domain; }
             set { SetProperty(ref _domain, value); }
         }
-        public bool IsPopUp
+        public Visibility IsPopUp
         {
             get { return _isPopUp; }
             set { SetProperty(ref _isPopUp, value); }
