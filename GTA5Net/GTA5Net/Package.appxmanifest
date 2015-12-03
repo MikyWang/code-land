@@ -4,7 +4,7 @@
   <mp:PhoneIdentity PhoneProductId="738c1201-372d-431b-9b8a-ac3ebcb51ffa" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>GTA5Net</DisplayName>
-    <PublisherDisplayName>wqy81</PublisherDisplayName>
+    <PublisherDisplayName>Miky Wang</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -17,8 +17,11 @@
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="GTA5Net.App">
       <uap:VisualElements DisplayName="GTA5Net" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="GTA5Net" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+          </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="skyBlue" />
       </uap:VisualElements>
       <uap:ApplicationContentUriRules>
         <uap:Rule Match="http://tool.chinaz.com/dns/" Type="include" WindowsRuntimeAccess="all" />
