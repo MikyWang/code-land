@@ -176,8 +176,16 @@ namespace GTA5Net.View
         {
             var list = data.Split(':');
             int min = 1;
+            if (int.Parse(list[min])==0)
+            {
+                min += 2;
+            }
             for (int j = 1; j < list.Length; j = j + 2)
             {
+                if (int.Parse(list[j]) == 0)
+                {
+                    j += 2;
+                }
                 if (int.Parse(list[j]) < int.Parse(list[min]))
                 {
                     min = j;

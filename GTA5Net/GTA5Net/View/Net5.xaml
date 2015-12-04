@@ -23,7 +23,7 @@
                 <TextBlock Text="IP"  Width="100" Margin="10"  VerticalAlignment="Center"/>
                 <TextBlock Text="TTL" Width="50" Margin="10"   VerticalAlignment="Center"/>
             </StackPanel>
-            <ListView  ItemsSource="{Binding IpMods, Mode=TwoWay}" x:Name="Data" RelativePanel.Below="Title" Height="450" >
+            <ListView  ItemsSource="{Binding IpMods, Mode=TwoWay}" x:Name="Data" RelativePanel.Below="Title" MaxHeight="600" >
                 <ListView.ItemTemplate >
                     <DataTemplate >
                         <StackPanel Orientation="Horizontal">
