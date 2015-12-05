@@ -176,13 +176,13 @@ namespace GTA5Net.View
         {
             var list = data.Split(':');
             int min = 1;
-            if (int.Parse(list[min])==0)
+            if (int.Parse(list[min])==0|| int.Parse(list[min]) == 1)
             {
                 min += 2;
             }
             for (int j = 1; j < list.Length; j = j + 2)
             {
-                if (int.Parse(list[j]) == 0)
+                if (int.Parse(list[j]) == 0|| int.Parse(list[j]) == 1)
                 {
                     j += 2;
                 }
